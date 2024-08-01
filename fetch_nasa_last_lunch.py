@@ -6,7 +6,7 @@ import argparse
 from dotenv import load_dotenv
 from pathlib import Path
 from urllib.parse import urlparse, urlsplit
-from helpers import get_pictures
+from fetch_image_helpers import get_pictures
 from datetime import datetime
 
 
@@ -27,19 +27,17 @@ def fetch_nasa_last_lunch(url: str, demo_key: str, count: int):
 
 def main():
     parser = argparse.ArgumentParser(description="Программа для скачивания NASA APOD картинок")
-    parser.add_argument("-c", "--count", default=None, help="Введите количество картинок: ")
+    parser.add_argument("-c", "--count", default=30, help="Введите количество картинок: ")
     args = parser.parse_args()
     apod_count = args.count
 
     load_dotenv()
-    demo_key = os.getenv("API_KEY")
+    demo_key = os.getenv("NASA_API_KEY")
     nasa_url = 'https://api.nasa.gov/planetary/apod'
-#    nasa_pics = fetch_nasa_last_lunch(nasa_url, demo_key, apod_count)
 
-    if apod_count:
-        nasa_pics = fetch_nasa_last_lunch(nasa_url, demo_key, apod_count)
-    else:
-        nasa_pics = fetch_nasa_last_lunch(nasa_url, demo_key, 30)
+
+    nasa_pics = fetch_nasa_last_lunch(nasa_url, demo_key, apod_count)
+
 
 
 

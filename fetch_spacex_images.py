@@ -6,7 +6,7 @@ import argparse
 from dotenv import load_dotenv
 from pathlib import Path
 from urllib.parse import urlparse, urlsplit
-from helpers import get_pictures
+from fetch_image_helpers import get_pictures
 
 
 def fetch_spacex_id_launch(url: list, demo_key: str, id: str):
@@ -28,7 +28,7 @@ def main():
 
 
     load_dotenv()
-    demo_key = os.getenv("API_KEY")
+    demo_key = os.getenv("NASA_API_KEY")
     spacex_url = f'https://api.spacexdata.com/v5/launches/{args.flight_id}'
     if args.flight_id:
         spacex_pics = fetch_spacex_id_launch(spacex_url, demo_key, args.flight_id)

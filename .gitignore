@@ -1,1 +1,7 @@
 .env
+.idea
+venv
+NASA APOD images
+NASA EPIC images
+Space X images
+__pycache__
