@@ -8,17 +8,16 @@ from dotenv import load_dotenv
 from fetch_image_helpers import get_pictures
 
 
-def take_file(directory):
+
+def take_paths(directory):
     filesindirs = os.listdir(directory)
     random.shuffle(filesindirs)
+    picture_paths = []
     for filesindir in filesindirs:
         file = os.path.join(str(directory), filesindir)
-    return file
+        picture_paths.append(file)
+    return picture_paths
 
-
-def time_in_seconds(hours):
-    seconds = hours * 3600
-    time.sleep(seconds)
 
 
 def main():
@@ -26,7 +25,8 @@ def main():
     token = os.getenv("TG_TOKEN")
     bot = telegram.Bot(token=token)
     tg_chat_id = os.getenv("TG_CHAT_ID")
-    hours = 4
+    pics_interval = 14400
+
 
     parser = argparse.ArgumentParser(description='Программа для скачивания картинок в директории')
     parser.add_argument('directory', help="Введите адрес директории: ")
@@ -34,11 +34,13 @@ def main():
 
 
     while True:
-        pictures = take_file(args.directory)
-        with open(pictures, 'rb') as photo:
-            bot.send_message(chat_id=tg_chat_id, text="Hello. Today's photos:")
-            bot.send_photo(chat_id=tg_chat_id, photo=photo)
-        timer = time_in_seconds(hours)
+        picture_list = take_paths(args.directory)
+        for picture in picture_list:
+            with open(picture, 'rb') as photo:
+                bot.send_message(chat_id=tg_chat_id, text="Hello. Today's photos:")
+                bot.send_photo(chat_id=tg_chat_id, photo=photo)
+                photo.close()
+            time.sleep(pics_interval)
 
 
 
