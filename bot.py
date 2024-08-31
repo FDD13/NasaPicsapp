@@ -34,12 +34,11 @@ def main():
 
 
     while True:
-        picture_list = take_paths(args.directory)
-        for picture in picture_list:
+        picture_packet = take_paths(args.directory)
+        for picture in picture_packet:
+            bot.send_message(chat_id=tg_chat_id, text="Hello. Today's photos:")
             with open(picture, 'rb') as photo:
-                bot.send_message(chat_id=tg_chat_id, text="Hello. Today's photos:")
                 bot.send_photo(chat_id=tg_chat_id, photo=photo)
-                photo.close()
             time.sleep(pics_interval)
 
 
