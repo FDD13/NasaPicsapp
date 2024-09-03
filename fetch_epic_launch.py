@@ -23,9 +23,8 @@ def get_epic_urls(url, api_key, num_images: int):
 
     for url in epic_image_collection:
         epic_image_name, epic_image_period = url.get("image"), url.get("date")
-        epic_image_date = datetime.strptime(url["date"], '%Y-%m-%d %H:%M:%S').strftime('%Y/%m/%d')
-        epic_image_url = f'https://api.nasa.gov/EPIC/archive/natural/{epic_image_date}/png/{epic_image_name}.png'
-        epic_file_extension = os.path.splitext(epic_image_url)
+        epic_image_packet = datetime.strptime(url["date"], '%Y-%m-%d %H:%M:%S').strftime('%Y/%m/%d')
+        epic_image_url = f'https://api.nasa.gov/EPIC/archive/natural/{epic_image_packet}/png/{epic_image_name}.png'
         epic_image_urls.append(epic_image_url)
     return epic_image_urls
 
@@ -52,9 +51,8 @@ def main():
 
 
     for image_number, url in enumerate(epic_urls):
-        nasa_epic_pic = download_img(url)
-        with open(os.path.join(images_path, f'image_{image_number}{nasa_epic_pic[1]}'), 'wb') as file:
-            file.write(nasa_epic_pic[0].content)
+        nasa_epic_pic = download_img(url, images_path, image_number)
+
 
 
 
