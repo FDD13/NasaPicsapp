@@ -41,12 +41,12 @@ def main():
 
     load_dotenv()
     nasa_api_key = os.getenv("NASA_API_KEY")
-    epic_info_url = 'https://api.nasa.gov/EPIC/api/natural/images'
+    epic_nasa_url = 'https://api.nasa.gov/EPIC/api/natural/images'
     images_path = 'NASA EPIC images'
     os.makedirs(images_path, exist_ok=True)
 
 
-    epic_urls = get_epic_urls(epic_info_url, nasa_api_key, num_images=epic_count)
+    epic_urls = get_epic_urls(epic_nasa_url, nasa_api_key, num_images=epic_count)
 
 
 
