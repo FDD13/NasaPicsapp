@@ -18,7 +18,7 @@ def get_nasa_urls(url: str, api_key: str, count: int):
     nasa_response = requests.get(url, params=nasa_payloads)
     nasa_response.raise_for_status()
     nasa_image_collection = nasa_response.json()
-    nasa_urls = [data for data in nasa_image_collection]
+    nasa_urls = [data['url'] for data in nasa_image_collection]
     return nasa_urls
 
 
@@ -38,13 +38,15 @@ def main():
     os.makedirs(images_path, exist_ok=True)
 
 
+
     nasa_apod_urls = get_nasa_urls(nasa_url, nasa_apod_api_key, apod_count)
 
 
+
     for image_number, url in enumerate(nasa_apod_urls):
-        nasa_apod_pic = download_img(url)
-        with open(os.path.join(images_path, f'image_{image_number}{nasa_apod_pic[1]}'), 'wb') as file:
-            file.write(nasa_apod_pic[0].content)
+        nasa_apod_pic = download_img(url, images_path, image_number)
+
+
 
 
 if __name__ == '__main__':
