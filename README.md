@@ -52,7 +52,7 @@ pip install -r requirements.txt
 
 Также необходимо прописать в .env файле ключ, который был послан на почту пользователя. Для того чтобы запустить скрипт в терминале необходимо прописать код, например:
 ```
-python main.py 'Disk:\folder\folder\NASA APOD images'
+python bot.py 'Disk:\folder\folder\NASA APOD images'
 ```
 после чего телеграм бот будет отправлять картинки из данной директории. Ниже приведены пути трех доступных директорий:
 * Disk:\folder\folder\NASA APOD images
@@ -65,11 +65,27 @@ python main.py 'Disk:\folder\folder\NASA APOD images'
 
 ##  Примечания
 
+Для скачивания картинок в проекте даются три скрипта, запустив которые пользователь получает доступ к различным видам картинок таких как: NASA Apod, Space X, NASA Epic. 
+Для того чтобы запустить скрипты необходимо в терминале прописать код:
+* python fetch_spacex_launch.py
+* python fetch_nasa_last_launch.py
+* python fetch_epic_launch.py
+
+В скрипте fetch_spacex_launch.py есть возможность выбрать картинки с опреленного полета. Для этого необходимо ввести ID полета при запуске скрипта, например:
+* python fetch_spacex_launch.py -if 5eb87d42ffd86e000604b384
+
+где, в свою очередь, 5eb87d42ffd86e000604b384 является ID полета.
+
+В скриптах fetch_nasa_last_launch.py и fetch_epic_launch.py есть возможность выбора количество картинок, который пользователь хотел бы скачать, например:
+* python fetch_nasa_last_launch.py -c 17
+* python fetch_epic_launch.py -c 6
+
+
 В скрипте даны 3 разные ссылки на которые отправляется запрос для получения различных видов картин: spacex_url, nasa_url, epic_info_url. 
 На каждую из этих ссылок идет запрос внутри функций соответсвенно: 
-* fetch_spacex_last_launch(spacex_url, demo_key),
-* fetch_epic_lunch(epic_info_url, demo_key),
-* fetch_nasa_last_lunch(nasa_url, demo_key)
+* fetch_spacex_launch(spacex_url, demo_key),
+* fetch_epic_launch(epic_info_url, demo_key),
+* fetch_nasa_last_launch(nasa_url, demo_key)
 
 Сохранения картинок в образующиеся папки с одноименнными названиями также происходят внутри каждой функций.
 
