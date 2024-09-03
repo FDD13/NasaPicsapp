@@ -67,18 +67,30 @@ python bot.py 'Disk:\folder\folder\NASA APOD images'
 
 Для скачивания картинок в проекте даются три скрипта, запустив которые пользователь получает доступ к различным видам картинок таких как: NASA Apod, Space X, NASA Epic. 
 Для того чтобы запустить скрипты необходимо в терминале прописать код:
-* python fetch_spacex_launch.py
-* python fetch_nasa_last_launch.py
-* python fetch_epic_launch.py
+```
+ python fetch_spacex_launch.py
+```
+```
+ python fetch_nasa_last_launch.py
+```
+```
+python fetch_epic_launch.py
+```
 
 В скрипте fetch_spacex_launch.py есть возможность выбрать картинки с опреленного полета. Для этого необходимо ввести ID полета при запуске скрипта, например:
-* python fetch_spacex_launch.py -if 5eb87d42ffd86e000604b384
-
+```
+python fetch_spacex_launch.py -if 5eb87d42ffd86e000604b384
+```
 где, в свою очередь, 5eb87d42ffd86e000604b384 является ID полета.
 
 В скриптах fetch_nasa_last_launch.py и fetch_epic_launch.py есть возможность выбора количество картинок, который пользователь хотел бы скачать, например:
-* python fetch_nasa_last_launch.py -c 17
-* python fetch_epic_launch.py -c 6
+```
+python fetch_nasa_last_launch.py -c 17
+```
+
+```
+ python fetch_epic_launch.py -c 6
+```
 
 
 В скрипте даны 3 разные ссылки на которые отправляется запрос для получения различных видов картин: spacex_url, nasa_url, epic_info_url. 
